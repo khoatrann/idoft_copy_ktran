@@ -22,14 +22,20 @@ jobs:
         with:
           java-version: 1.8
           
-          
+        
       - name: git clone
-        run: git clone https://github.com/spring-projects/spring-data-r2dbc
+        run: git clone https://github.com/apache/nifi
       - name: cd 
         run: cd spring-data-r2dbc
+        
+      - name: Checkout the latest commit
+        uses: actions/checkout@v2
+        with:
+          repository: apache/nifi
+          ref: 2bd752d868a8f3e36113b078bb576cf054e945e8
       - name: test-compile
-        run: mvn test-compile -pl . -am
+        run: mvn test-compile -pl nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-framework-core -am
       - name: test
-        run: mvn -pl . test -Dtest=org.springframework.data.r2dbc.core.R2dbcEntityTemplateUnitTests#shouldUpdateCorrectlyVersionedAndAudited
+        run: mvn -pl nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-framework-core test -Dtest=org.apache.nifi.controller.status.history.EmbeddedQuestDbStatusHistoryRepositoryForNodeTest#testWritingThenReadingComponents
       - name: flaky-test
-        run: mvn -pl . edu.illinois:nondex-maven-plugin:1.1.2:nondex -Dtest=org.springframework.data.r2dbc.core.R2dbcEntityTemplateUnitTests#shouldUpdateCorrectlyVersionedAndAudited
+        run: mvn -pl nifi-nar-bundles/nifi-framework-bundle/nifi-framework/nifi-framework-core edu.illinois:nondex-maven-plugin:1.1.2:nondex -Dtest=org.apache.nifi.controller.status.history.EmbeddedQuestDbStatusHistoryRepositoryForNodeTest#testWritingThenReadingComponents
