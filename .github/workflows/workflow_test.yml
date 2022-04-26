@@ -33,4 +33,8 @@ jobs:
           
       - name: test-compile
         run: mvn test-compile -pl nifi-commons/nifi-site-to-site-client -am
+      
+      - name: test
+        run: mvn -pl nifi-commons/nifi-site-to-site-client test -Dtest=org.apache.nifi.remote.client.http.TestHttpClient#testSendLargeFileHTTPWithProxy
+        
 
