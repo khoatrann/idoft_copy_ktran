@@ -27,11 +27,6 @@ jobs:
         run: git clone https://github.com/spring-projects/spring-data-r2dbc
       - name: cd 
         run: cd spring-data-r2dbc
-      - name: git checkout
-        uses: actions/checkout@v2
-        with:
-          repository: spring-projects/spring-data-r2dbc
-          ref: c1a2be67be5da684f13a9367e00029ce09c98f42
       - name: test-compile
         run: mvn test-compile -pl . -am
       - name: test
