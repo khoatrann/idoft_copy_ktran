@@ -28,7 +28,7 @@ jobs:
         run: git clone https://github.com/wro4j/wro4j
       - name: cd 
         run: cd wro4j
-      - name: git checkout
-        run: git checkout 185ab607f1d649ca38b4a772831ee754cd4649fb
+      - name: git rev-parse HEAD
+        run: git rev-parse HEAD
       - name: test-compile
         run: mvn test-compile -pl wro4j-extensions -am
