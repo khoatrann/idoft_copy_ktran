@@ -21,6 +21,16 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - name: tests
-        run: grep ,ID,, pr-data.csv | grep -v \\[ | shuf --random-source=<(while :; do echo ktran40@gmu.edu; done) | head
+      - name: clone
+        run: git clone https://github.com/apache/nifi
+      - name: cd
+        run: cd nifi
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          repository: apache/nifi
+          ref: 2bd752d868a8f3e36113b078bb576cf054e945e8
+          
+      - name: test-compile
+        run: mvn test-compile -pl nifi-commons/nifi-site-to-site-client -am
 
