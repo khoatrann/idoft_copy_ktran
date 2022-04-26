@@ -21,21 +21,16 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-          
         
       - name: git clone
-        run: git clone https://github.com/vojtechhabarta/typescript-generator
+        run: git clone https://github.com/HubSpot/jinjava
       - name: cd 
-        run: cd typescript-generator
+        run: cd HubSpot/jinjava
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          repository: apache/nifi
-          ref: c19d407fea52612e7b7cd20620059736aec9a6a9
+          repository: HubSpot/jinjava
+          ref: b428343af85e613805674cd44dad416dfddde09c
       - name: test-compile
-        run: mvn test-compile -pl typescript-generator-core -am
-      - name: test
-        run: mvn -pl typescript-generator-core test -Dtest=cz.habarta.typescript.generator.TaggedUnionsTest#testTaggedUnionsWithInterfaces
-      - name: flaky-test
-        run: mvn -pl typescript-generator-core edu.illinois:nondex-maven-plugin:1.1.2:nondex -Dtest=cz.habarta.typescript.generator.TaggedUnionsTest#testTaggedUnionsWithInterfaces
+        run: mvn test-compile -pl . -am
 
