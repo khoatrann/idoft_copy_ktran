@@ -25,10 +25,10 @@ jobs:
           distribution: 'adopt'
           
       - name: git clone
-        run: git clone https://github.com/vojtechhabarta/typescript-generator
+        run: git clone https://github.com/wro4j/wro4j
       - name: cd 
-        run: cd typescript-generator
+        run: cd wro4j
       - name: git rev-parse HEAD
         run: git rev-parse HEAD
       - name: test-compile
-        run: mvn test-compile -pl typescript-generator-core -am
+        run: mvn compile test -Dtest=ro.isdc.wro.extensions.processor.support.sass.TestRubySassEngine#shouldProcessValidSass
