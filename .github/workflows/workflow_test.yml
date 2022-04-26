@@ -31,7 +31,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: apache/nifi
-          ref: rev-parse HEAD
+          ref: c19d407fea52612e7b7cd20620059736aec9a6a9
       - name: test-compile
         run: mvn test-compile -pl typescript-generator-core -am
       - name: test
