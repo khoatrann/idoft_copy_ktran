@@ -21,16 +21,6 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-        
-      - name: git clone
-        run: git clone https://github.com/vojtechhabarta/typescript-generator
-      - name: cd 
-        run: cd typescript-generator
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          repository: HubSpot/jinjava
-          ref: 7a33aa0d8b4ce9e0a7d6626e65195b4c995b2871
-      - name: test-compile
-        run: mvn test-compile -pl typescript-generator-core -am
+      - name: tests
+        run: grep ,ID,, pr-data.csv | grep -v \\[ | shuf --random-source=<(while :; do echo ktran40@gmu.edu; done) | head
 
