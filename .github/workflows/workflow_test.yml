@@ -31,4 +31,4 @@ jobs:
       - name: git rev-parse HEAD
         run: git rev-parse HEAD
       - name: test-compile
-        run: mvn test-compile wro4j-extensions
+        run: mvn test-compile -pl "wro4j-extensions" -am
