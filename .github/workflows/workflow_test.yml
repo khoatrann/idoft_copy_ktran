@@ -23,17 +23,17 @@ jobs:
           java-version: 1.8
           
       - name: git clone
-        run: git clone https://github.com/Alluxio/alluxio
+        run: git clone https://github.com/HubSpot/jinjava
       - name: cd 
         run: cd alluxio
       - name: git checkout
         uses: actions/checkout@v2
         with:
-          repository: Alluxio/alluxio
-          ref: 68fcda9dd2ca2181eb897e10ca02fa5bc3a3099f
+          repository: HubSpot/jinjava
+          ref: b428343af85e613805674cd44dad416dfddde09c
       - name: test-compile
-        run: mvn test-compile -pl core/server/worker -am
+        run: mvn test-compile -pl . -am
       - name: test
-        run: mvn -pl core/server/worker test -Dtest=alluxio.worker.block.BlockMetadataViewTest#sameTierViewsBelow
+        run: mvn -pl . test -Dtest=com.hubspot.jinjava.lib.tag.eager.EagerImportTagTest#itDefersTripleLayer
       - name: flaky-test
-        run: mvn -pl core/server/worker edu.illinois:nondex-maven-plugin:1.1.2:nondex -Dtest=alluxio.worker.block.BlockMetadataViewTest#sameTierViewsBelow
+        run: mvn -pl . edu.illinois:nondex-maven-plugin:1.1.2:nondex -Dtest=com.hubspot.jinjava.lib.tag.eager.EagerImportTagTest#itDefersTripleLayer
