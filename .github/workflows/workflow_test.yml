@@ -26,9 +26,8 @@ jobs:
       - name: git clone
         run: git clone https://github.com/apache/nifi
       - name: cd 
-        run: cd spring-data-r2dbc
-        
-      - name: Checkout the latest commit
+        run: cd nifi
+      - name: Checkout
         uses: actions/checkout@v2
         with:
           repository: apache/nifi
