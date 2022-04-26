@@ -23,14 +23,14 @@ jobs:
           java-version: 1.8
         
       - name: git clone
-        run: git clone https://github.com/HubSpot/jinjava
+        run: git clone https://github.com/vojtechhabarta/typescript-generator
       - name: cd 
-        run: cd jinjava
+        run: cd typescript-generator
       - name: Checkout
         uses: actions/checkout@v2
         with:
           repository: HubSpot/jinjava
-          ref: b428343af85e613805674cd44dad416dfddde09c
+          ref: main
       - name: test-compile
         run: mvn test-compile -pl . -am
 
