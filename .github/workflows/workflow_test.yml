@@ -22,19 +22,18 @@ jobs:
         with:
           java-version: 1.8
           
-          
       - name: git clone
-        run: git clone https://github.com/HubSpot/jinjava
+        run: git clone https://github.com/apache/incubator-wayang
       - name: cd 
-        run: cd jinjava
+        run: cd incubator-wayang
       - name: git checkout
         uses: actions/checkout@v2
         with:
-          repository: HubSpot/jinjava
-          ref: b428343af85e613805674cd44dad416dfddde09c
+          repository: apache/incubator-wayang
+          ref: b7b6c1ebf65b58f5c03ac2b9fd4c1846ea877d01
       - name: test-compile
-        run: mvn test-compile -pl . -am
+        run: mvn test-compile -pl wayang-platforms.wayang-graphch -am
       - name: test
-        run: mvn -pl . test -Dtest=com.hubspot.jinjava.lib.tag.eager.EagerImportTagTest#itDefersTripleLayer
+        run: mvn -pl wayang-platforms.wayang-graphch test -Dtest=org.apache.wayang.graphchi.operators.GraphChiPageRankOperatorTest#testExecution
       - name: flaky-test
-        run: mvn -pl . edu.illinois:nondex-maven-plugin:1.1.2:nondex -Dtest=com.hubspot.jinjava.lib.tag.eager.EagerImportTagTest#itDefersTripleLayer
+        run: mvn -pl wayang-platforms.wayang-graphch edu.illinois:nondex-maven-plugin:1.1.2:nondex -Dtest=org.apache.wayang.graphchi.operators.GraphChiPageRankOperatorTest#testExecution
