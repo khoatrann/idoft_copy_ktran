@@ -31,4 +31,4 @@ jobs:
       - name: git rev-parse HEAD
         run: git rev-parse HEAD
       - name: test-compile
-        run: mvn compile test -Dtest=ro.isdc.wro.extensions.processor.support.sass.TestRubySassEngine#shouldProcessValidSass
+        run: mvn compile test typescript-generator-core
