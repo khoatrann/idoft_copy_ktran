@@ -24,17 +24,17 @@ jobs:
           
           
       - name: git clone
-        run: git clone https://github.com/apache/incubator-wayang
+        run: git clone https://github.com/spring-projects/spring-data-r2dbc
       - name: cd 
-        run: cd incubator-wayang
+        run: cd spring-data-r2dbc
       - name: git checkout
         uses: actions/checkout@v2
         with:
-          repository: apache/incubator-wayang
-          ref: b7b6c1ebf65b58f5c03ac2b9fd4c1846ea877d01
+          repository: spring-projects/spring-data-r2dbc
+          ref: c1a2be67be5da684f13a9367e00029ce09c98f42
       - name: test-compile
-        run: mvn test-compile -pl wayang-platforms.wayang-graphch -am
+        run: mvn test-compile -pl . -am
       - name: test
-        run: mvn -pl wayang-platforms.wayang-graphch test -Dtest=org.apache.wayang.graphchi.operators.GraphChiPageRankOperatorTest#testExecution
+        run: mvn -pl . test -Dtest=org.springframework.data.r2dbc.core.R2dbcEntityTemplateUnitTests#shouldUpdateCorrectlyVersionedAndAudited
       - name: flaky-test
-        run: mvn -pl wayang-platforms.wayang-graphch edu.illinois:nondex-maven-plugin:1.1.2:nondex -Dtest=org.apache.wayang.graphchi.operators.GraphChiPageRankOperatorTest#testExecution
+        run: mvn -pl . edu.illinois:nondex-maven-plugin:1.1.2:nondex -Dtest=org.springframework.data.r2dbc.core.R2dbcEntityTemplateUnitTests#shouldUpdateCorrectlyVersionedAndAudited
