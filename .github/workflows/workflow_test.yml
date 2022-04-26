@@ -25,7 +25,7 @@ jobs:
       - name: git clone
         run: git clone https://github.com/HubSpot/jinjava
       - name: cd 
-        run: cd HubSpot/jinjava
+        run: cd jinjava
       - name: Checkout
         uses: actions/checkout@v2
         with:
