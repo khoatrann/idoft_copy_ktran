@@ -11,7 +11,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  test1:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -36,5 +36,54 @@ jobs:
       
       - name: test
         run: mvn -pl nifi-commons/nifi-site-to-site-client test -Dtest=org.apache.nifi.remote.client.http.TestHttpClient#testSendLargeFileHTTPWithProxy
-        
+  test2:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: clone
+        run: git clone https://github.com/wro4j/wro4j
+      - name: cd
+        run: cd wro4j
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          repository: wro4j/wro4j
+          ref: 185ab607f1d649ca38b4a772831ee754cd4649fb
+          
+      - name: test-compile
+        run: mvn test-compile -pl wro4j-extensions -am
+      
+      - name: test
+        run: mvn -pl wro4j-extensions test -Dtest=ro.isdc.wro.extensions.processor.support.sass.TestRubySassEngine#shouldProcessValidSass
+  test3:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: clone
+        run: git clone https://github.com/HubSpot/jinjava
+      - name: cd
+        run: cd jinjava
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          repository: HubSpot/jinjava
+          ref: b428343af85e613805674cd44dad416dfddde09c
+          
+      - name: test-compile
+        run: mvn test-compile -pl . -am
+      
+      - name: test
+        run: mvn -pl . test -Dtest=com.hubspot.jinjava.lib.tag.eager.EagerImportTagTest#itDefersTripleLayer
 
