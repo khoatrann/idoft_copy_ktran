@@ -25,13 +25,13 @@ jobs:
           distribution: 'adopt'
           
       - name: git clone
-        run: git clone https://github.com/wro4j/wro4j
+        run: git clone https://github.com/Alluxio/alluxio
       - name: cd 
-        run: cd wro4j
+        run: cd alluxio
       - name: git checkout
         uses: actions/checkout@v2
         with:
-          repository: wro4j/wro4j
-          ref: 185ab607f1d649ca38b4a772831ee754cd4649fb
+          repository: Alluxio/alluxio
+          ref: 68fcda9dd2ca2181eb897e10ca02fa5bc3a3099f
       - name: test-compile
-        run: mvn test-compile -pl wro4j-extensions -am
+        run: mvn test-compile -pl core/server/worker -am
