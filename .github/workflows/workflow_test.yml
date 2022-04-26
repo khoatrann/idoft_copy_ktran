@@ -33,3 +33,7 @@ jobs:
           ref: 68fcda9dd2ca2181eb897e10ca02fa5bc3a3099f
       - name: test-compile
         run: mvn test-compile -pl core/server/worker -am
+      - name: test
+        run: mvn -pl core/server/worker test -Dtest=alluxio.worker.block.BlockMetadataViewTest#sameTierViewsBelow
+      - name: flaky-test
+        run: mvn -pl core/server/worker edu.illinois:nondex-maven-plugin:1.1.2:nondex -Dtest=alluxio.worker.block.BlockMetadataViewTest#sameTierViewsBelow
